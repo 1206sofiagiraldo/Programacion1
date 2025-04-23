@@ -8,9 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Location {
+public class State {
     private String code;
     private String description;
-    private String code_state;
-    private String state_name;
 }
