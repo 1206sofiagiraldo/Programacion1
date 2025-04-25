@@ -38,13 +38,13 @@ public class LocationService {
 
         Path pathFile = Paths.get(ClassLoader.getSystemResource(locationsFilename).toURI());
 
-        try (CSVReader csvReader = new CSVReader(new FileReader(pathFile.toString()))) {
+        try (com.opencsv.CSVReader csvReader = new com.opencsv.CSVReader(new FileReader(pathFile.toString()))) {
             String[] line;
             csvReader.skip(1);
             // Leer todas las filas del CSV
             while ((line = csvReader.readNext()) != null) {
                 // Crear un nuevo objeto Location y agregarlo a la lista
-                locations.add(new Location(line[2], line[3], line[0], line[1]));
+                locations.add(new Location(line[2],line[3],line[0],line[1]));
                 boolean exists = false;
                 for (State state : states) {
                     if (state.getCode().equals(line[0])) {
@@ -52,8 +52,8 @@ public class LocationService {
                         break;
                     }
                 }
-                if (exists == false) {
-                    states.add(new State(line[0], line[1]));
+                if(exists == false){
+                    states.add(new State(line[0],line[1]));
                 }
             }
         } catch (IOException e) {
@@ -79,7 +79,7 @@ public class LocationService {
 
     public Location getLocationByName(String name) {
         for (Location location : locations) {
-            if ((location.getDescription().toLowerCase()).equals(name.toLowerCase())) {
+            if((location.getDescription().toLowerCase()).equals(name.toLowerCase())){
                 return location;
             }
         }
@@ -90,7 +90,7 @@ public class LocationService {
         List<Location> initialLetters = new ArrayList<>();
         for (Location location : locations) {
             System.out.println(location.getDescription().charAt(0));
-            if (location.getDescription().charAt(0) == letter) {
+            if(location.getDescription().charAt(0) == letter){
                 initialLetters.add(location);
             }
         }
@@ -100,7 +100,7 @@ public class LocationService {
     public List<Location> getLocationsByStateCode(String stateCode) {
         List<Location> states = new ArrayList<>();
         for (Location location : locations) {
-            if (location.getCode_state().equals(stateCode)) {
+            if(location.getCode_state().equals(stateCode)){
                 states.add(location);
             }
         }
@@ -120,18 +120,7 @@ public class LocationService {
         return null;
     }
 
-    public List<Location> getLocationByLetters(char LettersA, char LettersB) {
-        List<Location> initialLetters = new ArrayList<>();
-        for (Location location : locations) {
-            int last_letter = (location.getDescription().length() - 1);
-            if (location.getDescription().charAt(0) == LettersA && location.getDescription().charAt(last_letter) == Character.toUpperCase(LettersB)) {
-                initialLetters.add(location);
-            }
-        }
-        return initialLetters;
-    }
+
 }
-
-
 
 

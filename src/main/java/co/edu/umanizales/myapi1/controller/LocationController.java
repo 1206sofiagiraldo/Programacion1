@@ -36,30 +36,24 @@ public class LocationController {
         return locationService.getLocationByName(name);
     }
 
-    @GetMapping(path = "/by_initial_letter/{letter}")
+    @GetMapping(path="/by_initial_letter/{letter}")
     public List<Location> getLocationByInitialLetter(@PathVariable Character letter) {
         return locationService.getLocationByInitialLetter(letter);
     }
 
-    @GetMapping(path = "/by_state_code/{code}")
+    @GetMapping(path="/by_state_code/{code}")
     public List<Location> getLocationByInitialLetter(@PathVariable String code) {
         return locationService.getLocationsByStateCode(code);
     }
 
-    @GetMapping(path = "/by_states/{states}")
+    @GetMapping(path="/by_states/{states}")
     public List<State> getStateByStates(@PathVariable String states) {
         return locationService.getByStates();
     }
 
-    @GetMapping(path = "/by_states_code/{code}")
+    @GetMapping(path="/by_states_code/{code}")
     public State getStateByCode(@PathVariable String code) {
         return locationService.getStateByCode(code);
     }
-
-    @GetMapping(path = "/by_letters/{letterA}/{letterB}")
-    public List<Location> getLocationByLetters(@PathVariable char letterA, @PathVariable char letterB) {
-        return locationService.getLocationByLetters(letterA, letterB);
-    }
-
 }
 
